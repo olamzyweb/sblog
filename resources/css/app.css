@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   AKSO PHARMA — Global Custom Styles
+   ============================================ */
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        @apply font-sans text-charcoal bg-white;
+        overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-bold text-dark-green;
+    }
+
+    ::selection {
+        @apply bg-primary/20 text-dark-green;
+    }
+}
+
+@layer components {
+    /* — Section Container — */
+    .section-container {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    /* — Section Padding — */
+    .section-padding {
+        @apply py-16 md:py-24;
+    }
+
+    /* — Button Base — */
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm
+               transition-all duration-300 ease-out
+               focus:outline-none focus:ring-2 focus:ring-offset-2
+               disabled:opacity-50 disabled:cursor-not-allowed;
+        min-height: 44px; /* Minimum tap target */
+    }
+
+    .btn-primary {
+        @apply btn bg-pharma-green text-white
+               hover:bg-pharma-green-700 hover:shadow-glow-green
+               focus:ring-pharma-green;
+    }
+
+    .btn-secondary {
+        @apply btn bg-primary text-white
+               hover:bg-primary-600 hover:shadow-glow
+               focus:ring-primary;
+    }
+
+    .btn-outline {
+        @apply btn border-2 border-primary text-primary bg-transparent
+               hover:bg-primary hover:text-white
+               focus:ring-primary;
+    }
+
+    .btn-white {
+        @apply btn bg-white text-pharma-green
+               hover:bg-light-teal hover:shadow-lg
+               focus:ring-white;
+    }
+
+    /* — Card Base — */
+    .card {
+        @apply bg-white rounded-2xl border border-border shadow-card
+               transition-all duration-300 ease-out overflow-hidden;
+    }
+
+    .card-hover {
+        @apply card hover:-translate-y-2 hover:shadow-card-hover;
+    }
+
+    /* — Badge — */
+    .badge {
+        @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+    }
+
+    .badge-teal {
+        @apply badge bg-teal-mint text-primary-700;
+    }
+
+    .badge-green {
+        @apply badge bg-green-mint text-pharma-green;
+    }
+
+    /* — Form Inputs — */
+    .form-input-custom {
+        @apply w-full px-4 py-3 rounded-lg border border-border bg-white text-charcoal
+               placeholder:text-muted
+               focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none
+               transition-all duration-200;
+        min-height: 44px;
+    }
+
+    .form-label {
+        @apply block text-sm font-semibold text-dark-green mb-1.5;
+    }
+
+    /* — Section Background Variations — */
+    .bg-section-light {
+        @apply bg-light-teal;
+    }
+
+    .bg-section-gradient {
+        @apply bg-gradient-to-br from-light-teal via-white to-teal-mint/30;
+    }
+
+    /* — Page Hero Shared — */
+    .page-hero {
+        @apply relative py-20 md:py-28 bg-gradient-to-br from-dark-green via-pharma-green to-primary overflow-hidden;
+    }
+
+    .page-hero::before {
+        content: '';
+        @apply absolute inset-0 opacity-10;
+        background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.3) 0%, transparent 50%),
+                          radial-gradient(circle at 80% 20%, rgba(255,255,255,0.2) 0%, transparent 50%);
+    }
+
+    /* — Gradient Text — */
+    .gradient-text {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-pharma-green;
+    }
+
+    /* — Divider — */
+    .divider {
+        @apply w-16 h-1 bg-gradient-to-r from-primary to-pharma-green rounded-full;
+    }
+}
+
+@layer utilities {
+    /* — Animation helpers — */
+    .animate-on-scroll {
+        opacity: 0;
+    }
+
+    .stagger-children > * {
+        opacity: 0;
+    }
+
+    /* — Glass effect — */
+    .glass {
+        @apply bg-white/80 backdrop-blur-lg border-b border-white/20;
+    }
+
+    /* — Text balance — */
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    /* — Marquee Animation — */
+    .marquee-container {
+        @apply relative flex overflow-hidden;
+        mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    }
+    
+    .marquee-content {
+        @apply flex shrink-0 gap-6 py-4;
+        min-width: 100%;
+        animation: marquee 35s linear infinite;
+    }
+    
+    .marquee-container:hover .marquee-content {
+        animation-play-state: paused;
+    }
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-100% - 1.5rem)); } /* 1.5rem is gap-6 */
+}
+
+@keyframes dash {
+    to { stroke-dashoffset: -24; }
+}
